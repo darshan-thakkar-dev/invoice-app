@@ -1,8 +1,65 @@
-CREATE TABLE `tbl_cust` ( `id` INT NOT NULL AUTO_INCREMENT , `f_name` TEXT NOT NULL , `m_name` TEXT NOT NULL , `l_name` TEXT NOT NULL , `comapny_name` TEXT NOT NULL , `code` TEXT NOT NULL , `gst` TEXT NOT NULL , `pan` TEXT NOT NULL , `address` TEXT NOT NULL , `permenant_mo` TEXT NOT NULL , `alt_mo` TEXT NOT NULL , `email` TEXT NOT NULL , `website` TEXT NOT NULL , `image_name` TEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB; 
+CREATE TABLE `tbl_cust` (
+  `id` int(11) NOT NULL,
+  `f_name` text NOT NULL,
+  `m_name` text NOT NULL,
+  `l_name` text NOT NULL,
+  `company_name` text NOT NULL,
+  `code` text NOT NULL,
+  `gst` text NOT NULL,
+  `pan` text NOT NULL,
+  `address` text NOT NULL,
+  `permenant_mo` text NOT NULL,
+  `alt_mo` text NOT NULL,
+  `email` text NOT NULL,
+  `website` text NOT NULL,
+  `image_name` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE `tbl_sup` ( `id` INT NOT NULL AUTO_INCREMENT , `f_name` TEXT NOT NULL , `m_name` TEXT NOT NULL , `l_name` TEXT NOT NULL , `comapny_name` TEXT NOT NULL , `code` TEXT NOT NULL , `gst` TEXT NOT NULL , `pan` TEXT NOT NULL , `address` TEXT NOT NULL , `permenant_mo` TEXT NOT NULL , `alt_mo` TEXT NOT NULL , `email` TEXT NOT NULL , `website` TEXT NOT NULL , `image_name` TEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB; 
+CREATE TABLE `tbl_sup` (
+  `id` int(11) NOT NULL,
+  `f_name` text NOT NULL,
+  `m_name` text NOT NULL,
+  `l_name` text NOT NULL,
+  `company_name` text NOT NULL,
+  `code` text NOT NULL,
+  `gst` text NOT NULL,
+  `pan` text NOT NULL,
+  `address` text NOT NULL,
+  `permenant_mo` text NOT NULL,
+  `alt_mo` text NOT NULL,
+  `email` text NOT NULL,
+  `website` text NOT NULL,
+  `image_name` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+CREATE TABLE `tbl_uom` (
+  `id` int(11) NOT NULL,
+  `uom_name` text NOT NULL,
+  `uom_desc` text NOT NULL,
+  `unit` double NOT NULL,
+  `con_uom_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-// item_id,item_name,image,descr,op stock,uom ref item type
+ALTER TABLE `tbl_cust`
+  ADD PRIMARY KEY (`id`);
 
-//uom_id,uom_name,uom_desc,unit,converted_uom
+ALTER TABLE `tbl_sup`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `tbl_uom`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `state`
+  MODIFY `state_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+ALTER TABLE `tbl_cust`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+
+ALTER TABLE `tbl_sup`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+ALTER TABLE `tbl_uom`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+ALTER TABLE `tbl_uom` CHANGE `unit` `unit` DOUBLE NULL DEFAULT NULL, CHANGE `con_uom_id` `con_uom_id` INT(11) NULL DEFAULT NULL;
