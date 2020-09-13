@@ -78,7 +78,7 @@ function update($table,$field,$condition)
 			$q1=substr($q1,0,strlen($q1)-1);
 			$str=substr($str,0,strlen($str)-1);
 			$sql="update ".$table." set ".$str."".$condition;
-			
+			// echo $sql;
 		 	// echo "<br>".$sql;die;
 			$result_update=mysqli_query($this->con,$sql) or die("There is some error in update query in table ".$table.mysqli_error());
 			return $result_update;
