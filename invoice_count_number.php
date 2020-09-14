@@ -26,9 +26,9 @@ fclose($file);
                         $x++;                        
                 }
                     header('Content-type: application/json');
-                    echo json_encode(array("status"=>1,"details"=>$TeacherList,"message"=>"Invoice count got Successfully."));
+                    echo json_encode(array("status"=>1,"count"=>$TeacherList[0]["count"],"message"=>"Invoice count got Successfully."));
                 }else{
                     header('Content-type: application/json');
-                    echo json_encode(array("status"=>1,"details"=>array("count"=>"1"),"message"=>"Invoice count got Successfully."));
+                    echo json_encode(array("status"=>1,"count"=>1,"message"=>"Invoice count got Successfully."));
                 }
 ?>
