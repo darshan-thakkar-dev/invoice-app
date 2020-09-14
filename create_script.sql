@@ -67,3 +67,18 @@ ALTER TABLE `tbl_uom` CHANGE `unit` `unit` DOUBLE NULL DEFAULT NULL, CHANGE `con
 CREATE TABLE `invoice`.`tbl_item` ( `id` INT(5) NOT NULL AUTO_INCREMENT , `itemName` VARCHAR(255) NULL DEFAULT NULL , `itemType` VARCHAR(255) NULL DEFAULT NULL , `itemDesc` VARCHAR(255) NULL DEFAULT NULL , `itemImgPath` VARCHAR(255) NULL DEFAULT NULL , `uomModel` BIGINT(5) NULL DEFAULT NULL , `itemStock` DOUBLE NULL DEFAULT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB
 
 ALTER TABLE `tbl_item` CHANGE `uomModel` `uomModel` INT(11) NULL DEFAULT NULL;
+
+
+CREATE TABLE `tbl_invoice_count` (
+  `id` int(11) NOT NULL,
+  `count` int(8) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+ALTER TABLE `tbl_invoice_count`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+
+INSERT INTO `tbl_invoice_count` (`id`, `count`) VALUES
+(1, 0);
+
