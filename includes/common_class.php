@@ -28,14 +28,15 @@
 			$q=substr($q,0,strlen($q)-1);
 			$q1=substr($q1,0,strlen($q1)-1);
 		 	$sql="insert into `$table` (".$q .") values (".$q1.")";
-		 	//echo "Insert SQL==".$sql; die;
+		 	// echo "Insert SQL==".$sql; die;
 		 	// $id=mysqli_insert_id($this->con);
+ 	     	// echo "New record created".mysqli_insert_id($this->con);
  	     	$rs=mysqli_query($this->con,$sql) or die("There is some error in insert query in table ".$table.mysqli_error());
 		 	return $rs;
 		 	// return $id;
 		}
 
-		function last_inserted_id($li)
+		function last_inserted_id()
 		{
 			return mysqli_insert_id($this->con);
 		}

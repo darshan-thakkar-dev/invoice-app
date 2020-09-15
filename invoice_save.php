@@ -17,63 +17,61 @@ fclose($file);
 	
 	include("includes/config.php");
 		// $state_name = $input_params['state_name'];
-    					$f_name=$input_params['f_name'];
-                        $m_name=$input_params['m_name'];
-                        $l_name=$input_params['l_name'];
-                        $company_name=$input_params['company_name'];
-                        $code=$input_params['code'];
-                        $gst=$input_params['gst'];
-                        $address=$input_params['address'];
-                        $pan=$input_params['pan'];
-                        $permenant_mo=$input_params['permenant_mo'];
-                        $alt_mo=$input_params['alt_mo'];
-                        $email=$input_params['email'];
-                        $website=$input_params['website'];
+                        $invoiceNumber=$input_params['invoiceNumber'];
+                        $date=$input_params['date'];
+                        $isNewCustomer=$input_params['isNewCustomer'];
+                        $customerName=$input_params['customerName'];
+                        $customerMo=$input_params['customerMo'];
+                        $customerAddress=$input_params['customerAddress'];
+                        $existingCustomerId=$input_params['existingCustomerId'];
+                        $remark=$input_params['remark'];
+                        $subTotal=$input_params['subTotal'];
+                        $totalTax=$input_params['totalTax'];
+                        $totalDiscount=$input_params['totalDiscount'];
+                        $extraCharges=$input_params['extraCharges'];
+                        $totalDue=$input_params['totalDue'];
+                        $total=$input_params['total'];
 
-    	if (empty($company_name)) 
-    	{
-    		header('Content-type: application/json');
-
+    	if (empty($invoiceNumber)){
+    	
+        	header('Content-type: application/json');
 			echo json_encode(array("status"=>0,"message"=>"Please fill all required Fields"));	
-    	}
-    	else
-    	{
-			$query_class_duplicate=$con->select_query("tbl_cust","*","Where company_name='".$company_name."'");
+    	
+        }else{
+		
+        	$query_class_duplicate=$con->select_query("tbl_invoice","*","Where invoiceNumber='".$company_name."'");
 			$rowfetchduplicate = mysqli_fetch_assoc($query_class_duplicate);
-			if(mysqli_num_rows($query_class_duplicate) > 0)
-			{
+		
+        	if(mysqli_num_rows($query_class_duplicate) > 0){
 				header('Content-type: application/json');
-				echo json_encode(array('status'=>0,'message'=>'Company name are already exists.'));
-			}
-			else
-			{    		
-    		
-    		$customer=array(
-		    		// "state_name"=>$state_name
-    				"f_name"=>$f_name,
-                    "m_name"=>$m_name,
-                    "l_name"=>$l_name,
-                    "company_name"=>$company_name,
-                	"code"=>$code,
-                    "gst"=>$gst,
-                    "address"=>$address,
-                    "pan"=>$pan,
-                    "permenant_mo"=>$permenant_mo,
-                    "alt_mo"=>$alt_mo,
-                    "email"=>$email,
-                    "website"=>$website
-    		);
+				echo json_encode(array('status'=>0,'message'=>'Invoice Number is already exists.'));
+			}else{
+    	
+        	$invoice=array(
+                "invoiceNumber"=>$invoiceNumber,
+                "date"=>$date,
+                "isNewCustomer"=>$isNewCustomer,
+                "customerName"=>$customerName,
+                "customerMo"=>$customerMo,
+                "customerAddress"=>$customerAddress,
+                "existingCustomerId"=>$existingCustomerId,
+                "remark"=>$remark,
+                "subTotal"=>$subTotal,
+                "totalTax"=>$totalTax,
+                "totalDiscount"=>$totalDiscount,
+                "extraCharges"=>$extraCharges,
+                "totalDue"=>$totalDue,
+                "total"=>$total
+            );
+        
+        	        $insertUser = $con->insert_record("tbl_invoice",$invoice);
+					
+                    // $user_id = mysqli_insert_id();
+					echo "New record has id: " . $con->last_inserted_id();
 
-    		// print_r($customer);
-
-    		$insertUser = $con->insert_record("tbl_cust",$customer);
-
-					// $user_id = mysqli_insert_id();
-
-					//print_r($userid);die();
 					header('Content-type: application/json');
 
-					echo json_encode(array("status"=>1,"message"=>"Customer added Successfully."));
+					echo json_encode(array("status"=>1,"message"=>"Invoice added Successfully."));
     	}
     }
 ?>

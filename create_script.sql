@@ -82,3 +82,5 @@ ALTER TABLE `tbl_invoice_count`
 INSERT INTO `tbl_invoice_count` (`id`, `count`) VALUES
 (1, 0);
 
+
+CREATE TABLE `invoice`.`tbl_invoice` ( `id` INT(5) NOT NULL , `invoiceNumber` VARCHAR(255) NULL , `date` DATE NULL , `isNewCustomer` BOOLEAN NOT NULL , `customerName` VARCHAR(255) NULL , `customerMo` VARCHAR(255) NULL , `customerAddress` VARCHAR(255) NULL , `existingCustomerId` INT(11) NULL , `remark` VARCHAR(255) NULL , `subTotal` DOUBLE NULL DEFAULT '0.0' , `totalTax` DOUBLE NULL DEFAULT '0.0' , `totalDiscount` DOUBLE NULL DEFAULT '0.0' , `extraCharges` DOUBLE NULL DEFAULT '0.0' , `totalDue` DOUBLE NULL DEFAULT '0.0' , `total` DOUBLE NULL DEFAULT '0.0' , PRIMARY KEY (`id`)) ENGINE = InnoDB
