@@ -31,6 +31,9 @@ fclose($file);
                         $extraCharges=$input_params['extraCharges'];
                         $totalDue=$input_params['totalDue'];
                         $total=$input_params['total'];
+                        $details = $input_params['details'];
+
+                        // print_r($details);
 
     	if (empty($invoiceNumber)){
     	
@@ -62,12 +65,24 @@ fclose($file);
                 "extraCharges"=>$extraCharges,
                 "totalDue"=>$totalDue,
                 "total"=>$total
-            );
+                );
         
-        	        $insertUser = $con->insert_record("tbl_invoice",$invoice);
-					
+        	    $insertUser = $con->insert_record("tbl_invoice",$invoice);
+		        $id = $con->last_inserted_id();
+                // $id = 33;   
+                
+                for ($i=0; $i <sizeof($details); $i++) { 
+                    # code...
+                    // echo $id;
+                    $invoiceIdArray = array('invoiceId');
+                    // $details=array_fill_keys(invoiceIdArray, $id);
+                    $details[$i]['invoiceId']=$id;
+                    // print_r($details[$i]);
+                    $insertUserDetails = $con->insert_record("tbl_invoice_details",$details[$i]);
+                }
+                 
                     // $user_id = mysqli_insert_id();
-					echo "New record has id: " . $con->last_inserted_id();
+					// echo "New record has id: " . $con->last_inserted_id();
 
 					header('Content-type: application/json');
 

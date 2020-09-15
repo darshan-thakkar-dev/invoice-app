@@ -84,3 +84,16 @@ INSERT INTO `tbl_invoice_count` (`id`, `count`) VALUES
 
 
 CREATE TABLE `invoice`.`tbl_invoice` ( `id` INT(5) NOT NULL , `invoiceNumber` VARCHAR(255) NULL , `date` DATE NULL , `isNewCustomer` BOOLEAN NOT NULL , `customerName` VARCHAR(255) NULL , `customerMo` VARCHAR(255) NULL , `customerAddress` VARCHAR(255) NULL , `existingCustomerId` INT(11) NULL , `remark` VARCHAR(255) NULL , `subTotal` DOUBLE NULL DEFAULT '0.0' , `totalTax` DOUBLE NULL DEFAULT '0.0' , `totalDiscount` DOUBLE NULL DEFAULT '0.0' , `extraCharges` DOUBLE NULL DEFAULT '0.0' , `totalDue` DOUBLE NULL DEFAULT '0.0' , `total` DOUBLE NULL DEFAULT '0.0' , PRIMARY KEY (`id`)) ENGINE = InnoDB
+
+ALTER TABLE `tbl_invoice`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+
+CREATE TABLE `invoice`.`tbl_invoice_details` ( `id` INT(5) NOT NULL AUTO_INCREMENT , `item` INT NOT NULL , `uom` INT NOT NULL , `weight` DOUBLE NOT NULL DEFAULT '0.0' , `price` DOUBLE NOT NULL DEFAULT '0.0' , `tax` DOUBLE NOT NULL DEFAULT '0.0' , PRIMARY KEY (`id`(5))) ENGINE = InnoDB;
+
+
+ALTER TABLE `tbl_invoice_details` ADD `invoiceId` INT(5) NOT NULL AFTER `tax`;
+
+ALTER TABLE `tbl_invoice_details` ADD CONSTRAINT `invoiceId` FOREIGN KEY (`invoiceId`) REFERENCES `tbl_invoice`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `tbl_invoice_details` CHANGE `invoice_id` `invoiceId` INT(11) NOT NULL;

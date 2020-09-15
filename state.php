@@ -51,9 +51,9 @@ fclose($file);
 				}*/
 
 					// $user_id = ;
-					$id = $con->last_inserted_id();	
-					echo($id);
-					die();
+/*					$id = $con->last_inserted_id();	
+					echo($id);*/
+					// die();
 					
 					header('Content-type: application/json');
 
