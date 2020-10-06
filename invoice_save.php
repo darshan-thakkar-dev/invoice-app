@@ -83,9 +83,8 @@ fclose($file);
                  
                     // $user_id = mysqli_insert_id();
 					// echo "New record has id: " . $con->last_inserted_id();
-
+                    
 					header('Content-type: application/json');
-
 					echo json_encode(array("status"=>1,"message"=>"Invoice added Successfully."));
     	}
     }
